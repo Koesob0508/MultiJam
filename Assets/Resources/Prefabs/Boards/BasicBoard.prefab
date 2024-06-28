@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6121872914774543939}
   - component: {fileID: 2386807437294412423}
   m_Layer: 0
-  m_Name: MyDeck
+  m_Name: PlayerDeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 1567921589493850806}
   - component: {fileID: 6668338100558081069}
   m_Layer: 0
-  m_Name: MyArea
+  m_Name: PlayerArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,6 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6316498042329380189}
+  - component: {fileID: 426151318785295348}
   m_Layer: 0
   m_Name: BasicBoard
   m_TagString: Untagged
@@ -462,14 +463,28 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5669558756097020403}
-  - {fileID: 7819700721315980462}
   - {fileID: 1648401823784003733}
+  - {fileID: 7819700721315980462}
   - {fileID: 2097688353052545831}
   - {fileID: 4131694848844966627}
   - {fileID: 1007766847957046314}
   - {fileID: 8122099314656883380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &426151318785295348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579170697697919216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a2d2b3059802c42a3a672ce9c0afe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 4745196763120397245}
+  Enemy: {fileID: 2017779325513315941}
 --- !u!1 &4187273118617234180
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +606,7 @@ GameObject:
   - component: {fileID: 5089247529007509288}
   - component: {fileID: 5278647613991239755}
   m_Layer: 0
-  m_Name: My
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

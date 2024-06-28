@@ -4,6 +4,7 @@
     {
         public enum Player
         {
+            Unknown,
             Leader,
             Follower
         }
