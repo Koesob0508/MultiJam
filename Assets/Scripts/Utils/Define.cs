@@ -14,5 +14,17 @@
             Lobby,
             Main
         }
+
+        public enum MouseEvent
+        {
+            Press,
+            Click,
+        }
+
+        public enum UIEvent
+        {
+            Click,
+            Drag,
+        }
     }
 }

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 
 namespace MultiJam
 {
-    public class Managers : MonoBehaviour
+    public class Managers : NetworkBehaviour
     {
         private static Managers s_instance;
         public static Managers Instance { get { Init(); return s_instance; } }
@@ -10,10 +11,12 @@ namespace MultiJam
         SceneManagerEx _scene = new SceneManagerEx();
         PoolManager _pool = new PoolManager();
         ResourceManager _resource = new ResourceManager();
+        UIManager _ui = new UIManager();
 
         public static SceneManagerEx Scene { get { return Instance._scene; } }
         public static PoolManager Pool { get { return Instance._pool; } }
-        public static ResourceManager ResourceManager { get { return Instance._resource;} }
+        public static ResourceManager Resource { get { return Instance._resource;} }
+        public static UIManager UI { get { return Instance._ui; } }
 
         private void Start()
         {
@@ -42,6 +45,7 @@ namespace MultiJam
         public static void Clear()
         {
             s_instance._pool.Clear();
+            s_instance._ui.Clear();
         }
     }
 }

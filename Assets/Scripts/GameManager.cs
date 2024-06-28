@@ -6,7 +6,6 @@ namespace MultiJam
     public class GameManager : NetworkBehaviour
     {
         [SerializeField] private bool gameStarted = false;
-        public ClientManager client;
 
         private void Start()
         {
@@ -51,7 +50,7 @@ namespace MultiJam
 
             Debug.Log("Start Game");
 
-            client.InitWorldClientRpc (0);
+            //client.InitWorldClientRpc(0);
         }
     }
 }

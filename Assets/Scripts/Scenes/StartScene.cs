@@ -1,15 +1,17 @@
-﻿using MultiJam;
-using UnityEngine;
-
-public class StartScene : BaseScene
+﻿namespace MultiJam
 {
-    protected override void Init()
+    public class StartScene : BaseScene
     {
-        // Managers를 호출하면서 Managers 초기화
-    }
+        protected override void Init()
+        {
+            SceneType = Define.Scene.Title;
 
-    public override void Clear()
-    {
-        
+            Managers.UI.ShowSceneUI<UI_StartButtons>();
+        }
+
+        public override void Clear()
+        {
+
+        }
     }
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace MultiJam
 {
-    public class ClientManager : NetworkBehaviour
+    public class ClientManager
     {
         [ClientRpc] 
         public void InitWorldClientRpc(int _worldNumber)
         {
-            Debug.Log($"{_worldNumber} 구현");
+            Managers.Resource.Instantiate("Prefabs/Boards/BasicBoard");
         }
 
         [ClientRpc]
@@ -16,7 +16,7 @@ namespace MultiJam
         {
             // local Player는 언제나 아래로
             // 상대는 항상 위로
-            if(IsServer) // 빨간색 유지
+            if(Managers.Instance.IsServer) // 빨간색 유지
             {
                 // 상대를 파란색으로 변경
             }
@@ -31,7 +31,7 @@ namespace MultiJam
         {
             // Server가 선공이고, Client가 후공
             // 선공은 3장의 카드를 뽑고, 후공은 4장의 카드 + 동전을 갖고 시작한다.
-            if(IsServer)
+            if(Managers.Instance.IsServer)
             {
 
             }
