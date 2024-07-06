@@ -15,6 +15,7 @@ namespace MultiJam
         GameManager _game = null;
         BoardManager _board = new BoardManager();
 
+        public static NetworkManager Network { get { return NetworkManager.Singleton; } }
         public static SceneManagerEx Scene { get { return Instance._scene; } }
         public static PoolManager Pool { get { return Instance._pool; } }
         public static ResourceManager Resource { get { return Instance._resource; } }
@@ -41,27 +42,35 @@ namespace MultiJam
 
                 DontDestroyOnLoad(obj);
                 s_instance = obj.GetComponent<Managers>();
-            }
 
-            s_instance._scene.Init();
-            s_instance._resource.Init();
-            s_instance._pool.Init();
-            s_instance._ui.Init();
+                s_instance._scene.Init();
+                s_instance._resource.Init();
+                s_instance._pool.Init();
+                s_instance._ui.Init();
 
-            if (s_instance._game == null)
-            {
-                GameObject obj = GameObject.Find("@GameManager");
-                if (obj == null)
+                if (s_instance._game == null)
                 {
-                    obj = new GameObject { name = "@GameManager" };
+                    GameObject gm = GameObject.Find("@GameManager");
+                    if (gm == null)
+                    {
+                        GameObject original = Resources.Load<GameObject>("Prefabs/@GameManager");
+                        gm = Instantiate(original);
+
+                        int index = gm.name.IndexOf("(Clone)");
+                        if (index > 0)
+                        {
+                            gm.name = gm.name.Substring(0, index);
+                        }
+
+                        gm.GetComponent<NetworkObject>().Spawn();
+                    }
+
+                    s_instance._game = gm.GetComponent<GameManager>();
                 }
 
-                DontDestroyOnLoad(obj);
-                s_instance._game = obj.GetComponent<GameManager>();
+                s_instance._game.Init();
+                s_instance._board.Init();
             }
-
-            s_instance._game.Init();
-            s_instance._board.Init();
         }
 
         public static void Clear()

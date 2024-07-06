@@ -6,7 +6,7 @@
         {
             SceneType = Define.Scene.Title;
 
-            Managers.UI.ShowSceneUI<UI_StartButtons>();
+            Managers.UI.ShowSceneUI<UI_StartScene>();
         }
 
         public override void Clear()
