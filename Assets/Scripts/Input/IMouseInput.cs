@@ -1,28 +1,13 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace MultiJam
 {
-    public interface IMouseInput
+    public struct PointerInput
     {
-        // Clicks
-        Action<PointerEventData> OnPointerClick { get; set; }
-        Action<PointerEventData> OnPointerDown { get; set; }
-        Action<PointerEventData> OnPointerUp { get; set; }
-
-        // Drag
-        Action<PointerEventData> OnBeginDrag { get; set; }
-        Action<PointerEventData> OnDrag { get; set; }
-        Action<PointerEventData> OnEndDrag { get; set; }
-        Action<PointerEventData> OnDrop { get; set; }
-
-        // Enter
-        Action<PointerEventData> OnPointerEnter { get; set; }
-        Action<PointerEventData> OnPOinterExt { get; set; }
-
-        Vector2 MousePosition { get; }
-        DragDirection DragDirection { get; }
+        public Vector2 position;
+        public Vector2 delta;
+        public Vector2 scroll;
     }
 
     public enum DragDirection
@@ -32,5 +17,26 @@ namespace MultiJam
         Left,
         Top,
         Right
+    }
+
+    public interface IMouseInput
+    {
+        // Clicks
+        Action<PointerInput> OnPointerClick { get; set; }
+        Action<PointerInput> OnPointerDown { get; set; }
+        Action<PointerInput> OnPointerUp { get; set; }
+
+        // Drag
+        Action<PointerInput> OnBeginDrag { get; set; }
+        Action<PointerInput> OnDrag { get; set; }
+        Action<PointerInput> OnEndDrag { get; set; }
+        Action<PointerInput> OnDrop { get; set; }
+
+        // Enter
+        Action<PointerInput> OnPointerEnter { get; set; }
+        Action<PointerInput> OnPointerExit { get; set; }
+
+        Vector2 MousePosition { get; }
+        DragDirection DragDirection { get; }
     }
 }
