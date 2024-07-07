@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace MultiJam
@@ -7,47 +8,26 @@ namespace MultiJam
     [RequireComponent(typeof(Collider))]
     public class MouseInputProvider : MonoBehaviour, IMouseInput
     {
-        private MouseInputActions inputActions;
         private Vector3 oldPosition;
+        Vector2 IMouseInput.MousePosition => Input.mousePosition;
+        DragDirection IMouseInput.DragDirection => GetDragDirection();
 
-        // TODO : Consider to impletment Save Infokes
-        public Action<PointerInput> OnPointerClick { get; set; } = pointerInput => { Debug.Log("PointerClick"); };
-        public Action<PointerInput> OnPointerDown { get; set; } = pointerInput => { Debug.Log("PointerDown"); };
-        public Action<PointerInput> OnPointerUp { get; set; } = pointerInput => { Debug.Log("PointerUp"); };
-        public Action<PointerInput> OnBeginDrag { get; set; } = pointerInput => { Debug.Log("BeginDrag"); };
-        public Action<PointerInput> OnDrag { get; set; } = pointerInput => { Debug.Log("Drag"); };
-        public Action<PointerInput> OnEndDrag { get; set; } = pointerInput => { Debug.Log("EndDrag"); };
-        public Action<PointerInput> OnDrop { get; set; } = pointerInput => { Debug.Log("Drop"); };
-        public Action<PointerInput> OnPointerEnter { get; set; } = pointerInput => { Debug.Log("PointerEnter"); };
-        public Action<PointerInput> OnPointerExit { get; set; } = pointerInput => { Debug.Log("PointerExit"); };
-
-        public Vector2 MousePosition => inputActions.UI.PointerPosition.ReadValue<Vector2>();
-
-        public DragDirection DragDirection => GetDragDirection();
+        // TODO : Consider to impletment Save Invokes
+        Action<PointerEventData> IMouseInput.OnPointerClick { get; set; } = eventData => { Debug.Log("PointerClick"); };
+        Action<PointerEventData> IMouseInput.OnPointerDown { get; set; } = eventData => { Debug.Log("PointerDown"); };
+        Action<PointerEventData> IMouseInput.OnPointerUp { get; set; } = eventData => { Debug.Log("PointerUp"); };
+        Action<PointerEventData> IMouseInput.OnBeginDrag { get; set; } = eventData => { Debug.Log("BeginDrag"); };
+        Action<PointerEventData> IMouseInput.OnDrag { get; set; } = eventData => { Debug.Log("Drag"); };
+        Action<PointerEventData> IMouseInput.OnEndDrag { get; set; } = eventData => { Debug.Log("EndDrag"); };
+        Action<PointerEventData> IMouseInput.OnDrop { get; set; } = eventData => { Debug.Log("Drop"); };
+        Action<PointerEventData> IMouseInput.OnPointerEnter { get; set; } = eventData => { Debug.Log("PointerEnter"); };
+        Action<PointerEventData> IMouseInput.OnPointerExit { get; set; } = eventData => { Debug.Log("PointerExit"); };
 
         private void Awake()
         {
-            inputActions = new MouseInputActions();
-        }
-
-        private void OnEnable()
-        {
-            inputActions.UI.Enable();
-
-            inputActions.UI.PointerClick.performed += context => OnPointerClick?.Invoke(CreatePointerInput(context));
-            inputActions.UI.PointerDown.performed += context => OnPointerDown?.Invoke(CreatePointerInput(context));
-            inputActions.UI.PointerUp.performed += context => OnPointerUp?.Invoke(CreatePointerInput(context));
-            inputActions.UI.BeginDrag.performed += context => OnBeginDrag?.Invoke(CreatePointerInput(context));
-            inputActions.UI.Drag.performed += context => OnDrag?.Invoke(CreatePointerInput(context));
-            inputActions.UI.EndDrag.performed += context => OnEndDrag?.Invoke(CreatePointerInput(context));
-            inputActions.UI.Drop.performed += context => OnDrop?.Invoke(CreatePointerInput(context));
-            inputActions.UI.PointerEnter.performed += context => OnPointerEnter?.Invoke(CreatePointerInput(context));
-            inputActions.UI.PointerExit.performed += context => OnPointerExit?.Invoke(CreatePointerInput(context));
-        }
-
-        private void OnDisable()
-        {
-            inputActions.UI.Disable();
+            // IEventSystemHandler는 PhysicsRaycaster에 의해 호출된다. 이 Component가 없으면 안됨.
+            if (Camera.main.GetComponent<PhysicsRaycaster>() == null)
+                throw new Exception(GetType() + " needs an " + typeof(PhysicsRaycaster) + " on the MainCamera");
         }
 
         /// <summary>
@@ -69,14 +49,31 @@ namespace MultiJam
             return DragDirection.None;
         }
 
-        private PointerInput CreatePointerInput(InputAction.CallbackContext context)
-        {
-            return new PointerInput
-            {
-                position = inputActions.UI.PointerPosition.ReadValue<Vector2>(),
-                delta = inputActions.UI.PointerDelta.ReadValue<Vector2>(),
-                scroll = inputActions.UI.PointerScroll.ReadValue<Vector2>()
-            };
-        }
+        void IPointerClickHandler.OnPointerClick(PointerEventData eventData) =>
+            ((IMouseInput)this).OnPointerClick.Invoke(eventData);
+
+        void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) =>
+            ((IMouseInput)this).OnBeginDrag.Invoke(eventData);
+
+        void IDragHandler.OnDrag(PointerEventData eventData) =>
+            ((IMouseInput)this).OnDrag.Invoke(eventData);
+
+        void IEndDragHandler.OnEndDrag(PointerEventData eventData) =>
+            ((IMouseInput)this).OnEndDrag.Invoke(eventData);
+
+        void IDropHandler.OnDrop(PointerEventData eventData) =>
+            ((IMouseInput)this).OnDrop.Invoke(eventData);
+
+        void IPointerDownHandler.OnPointerDown(PointerEventData eventData) =>
+            ((IMouseInput)this).OnPointerDown.Invoke(eventData);
+
+        void IPointerUpHandler.OnPointerUp(PointerEventData eventData) =>
+            ((IMouseInput)this).OnPointerUp.Invoke(eventData);
+
+        void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) =>
+            ((IMouseInput)this).OnPointerEnter.Invoke(eventData);
+
+        void IPointerExitHandler.OnPointerExit(PointerEventData eventData) =>
+            ((IMouseInput)this).OnPointerExit.Invoke(eventData);
     }
 }

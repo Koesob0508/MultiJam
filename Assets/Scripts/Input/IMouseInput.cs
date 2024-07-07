@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace MultiJam
 {
@@ -19,24 +20,34 @@ namespace MultiJam
         Right
     }
 
-    public interface IMouseInput
+    public interface IMouseInput :
+        IPointerClickHandler,
+        IBeginDragHandler,
+        IDragHandler,
+        IEndDragHandler,
+        IDropHandler,
+        IPointerDownHandler,
+        IPointerUpHandler,
+        IPointerEnterHandler,
+        IPointerExitHandler
     {
-        // Clicks
-        Action<PointerInput> OnPointerClick { get; set; }
-        Action<PointerInput> OnPointerDown { get; set; }
-        Action<PointerInput> OnPointerUp { get; set; }
-
-        // Drag
-        Action<PointerInput> OnBeginDrag { get; set; }
-        Action<PointerInput> OnDrag { get; set; }
-        Action<PointerInput> OnEndDrag { get; set; }
-        Action<PointerInput> OnDrop { get; set; }
-
-        // Enter
-        Action<PointerInput> OnPointerEnter { get; set; }
-        Action<PointerInput> OnPointerExit { get; set; }
-
         Vector2 MousePosition { get; }
         DragDirection DragDirection { get; }
+
+        // Clicks
+        new Action<PointerEventData> OnPointerClick { get; set; }
+        new Action<PointerEventData> OnPointerDown { get; set; }
+        new Action<PointerEventData> OnPointerUp { get; set; }
+
+        // Drag
+        new Action<PointerEventData> OnBeginDrag { get; set; }
+        new Action<PointerEventData> OnDrag { get; set; }
+        new Action<PointerEventData> OnEndDrag { get; set; }
+
+        new Action<PointerEventData> OnDrop { get; set; }
+
+        // Enter
+        new Action<PointerEventData> OnPointerEnter { get; set; }
+        new Action<PointerEventData> OnPointerExit { get; set; }
     }
 }
