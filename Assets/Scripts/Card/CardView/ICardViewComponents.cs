@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MultiJam
 {
-    public interface ICardComponents
+    public interface ICardViewComponents
     {
         Camera MainCamera { get; }
         SpriteRenderer[] Renderers { get; }
