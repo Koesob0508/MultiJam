@@ -1,0 +1,489 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+
+namespace MultiJam
+{
+    public partial class MouseInputActions: IInputActionCollection2, IDisposable
+    {
+        public InputActionAsset asset { get; }
+        public MouseInputActions()
+        {
+            asset = InputActionAsset.FromJson(@"{
+    ""name"": ""MouseInputActions"",
+    ""maps"": [
+        {
+            ""name"": ""UI"",
+            ""id"": ""e93fec37-d5ba-44c4-bdb7-c0d64b29131c"",
+            ""actions"": [
+                {
+                    ""name"": ""PointerClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5dfb00a-c295-44b2-8d85-0777781d3367"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""06841b81-f6ab-42e9-b5f7-bf84c9039bca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a949594-ccf9-4582-8a4a-395a16626ae9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""1dee5c6c-3d4a-457d-aa02-0fc574e394b0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PointerDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""65e7c96b-caaa-4547-a6b9-3b65e765baad"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PointerScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""439faf05-8f68-459d-9168-8687de7920e4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PointerEnter"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""abcf1395-eff7-43fa-9a87-2406631516f9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerExit"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5c758307-cf35-4d67-af3e-82e3588cab1b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BeginDrag"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f2e8f4f4-d462-47b8-afa5-130903688b67"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""461b5da8-027f-4415-8de1-f99ecf7a0cca"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EndDrag"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""973bbd6e-ded7-463f-8baa-e4a99c1e6945"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9766475f-2dc6-48b3-ae18-da95c8f66dee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f92555f0-f368-4e2f-b835-48bca828d65c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a1de0dd-4ecd-4d24-9a0b-ce554876ff72"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4b2c655-20b8-41d9-9476-9569d5d0122f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6968d72a-2657-4cfd-8e36-bb88c89f3ffb"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d277e8e4-2e76-4012-bc5c-9774237a2f5a"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04e513cc-3f4e-46db-ba58-76fae970248a"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c59c0d14-5a87-4b8f-8b89-6b26bc4f5d8e"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerEnter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9006de8a-7b82-47e9-9a4b-174f32c7ca36"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerExit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38789a52-0989-4e6f-95e1-b6d0ec404753"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BeginDrag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3f4fc12-a076-4988-92ce-d00cf3ac4fdf"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""962dca46-9453-4e47-b82f-15df6a492e53"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EndDrag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00ddeefc-1e4e-474a-906d-bd33715ea91d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
+    ""controlSchemes"": []
+}");
+            // UI
+            m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+            m_UI_PointerClick = m_UI.FindAction("PointerClick", throwIfNotFound: true);
+            m_UI_PointerDown = m_UI.FindAction("PointerDown", throwIfNotFound: true);
+            m_UI_PointerUp = m_UI.FindAction("PointerUp", throwIfNotFound: true);
+            m_UI_PointerPosition = m_UI.FindAction("PointerPosition", throwIfNotFound: true);
+            m_UI_PointerDelta = m_UI.FindAction("PointerDelta", throwIfNotFound: true);
+            m_UI_PointerScroll = m_UI.FindAction("PointerScroll", throwIfNotFound: true);
+            m_UI_PointerEnter = m_UI.FindAction("PointerEnter", throwIfNotFound: true);
+            m_UI_PointerExit = m_UI.FindAction("PointerExit", throwIfNotFound: true);
+            m_UI_BeginDrag = m_UI.FindAction("BeginDrag", throwIfNotFound: true);
+            m_UI_Drag = m_UI.FindAction("Drag", throwIfNotFound: true);
+            m_UI_EndDrag = m_UI.FindAction("EndDrag", throwIfNotFound: true);
+            m_UI_Drop = m_UI.FindAction("Drop", throwIfNotFound: true);
+        }
+
+        public void Dispose()
+        {
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+
+        public IEnumerable<InputBinding> bindings => asset.bindings;
+
+        public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
+        {
+            return asset.FindAction(actionNameOrId, throwIfNotFound);
+        }
+
+        public int FindBinding(InputBinding bindingMask, out InputAction action)
+        {
+            return asset.FindBinding(bindingMask, out action);
+        }
+
+        // UI
+        private readonly InputActionMap m_UI;
+        private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+        private readonly InputAction m_UI_PointerClick;
+        private readonly InputAction m_UI_PointerDown;
+        private readonly InputAction m_UI_PointerUp;
+        private readonly InputAction m_UI_PointerPosition;
+        private readonly InputAction m_UI_PointerDelta;
+        private readonly InputAction m_UI_PointerScroll;
+        private readonly InputAction m_UI_PointerEnter;
+        private readonly InputAction m_UI_PointerExit;
+        private readonly InputAction m_UI_BeginDrag;
+        private readonly InputAction m_UI_Drag;
+        private readonly InputAction m_UI_EndDrag;
+        private readonly InputAction m_UI_Drop;
+        public struct UIActions
+        {
+            private @MouseInputActions m_Wrapper;
+            public UIActions(@MouseInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @PointerClick => m_Wrapper.m_UI_PointerClick;
+            public InputAction @PointerDown => m_Wrapper.m_UI_PointerDown;
+            public InputAction @PointerUp => m_Wrapper.m_UI_PointerUp;
+            public InputAction @PointerPosition => m_Wrapper.m_UI_PointerPosition;
+            public InputAction @PointerDelta => m_Wrapper.m_UI_PointerDelta;
+            public InputAction @PointerScroll => m_Wrapper.m_UI_PointerScroll;
+            public InputAction @PointerEnter => m_Wrapper.m_UI_PointerEnter;
+            public InputAction @PointerExit => m_Wrapper.m_UI_PointerExit;
+            public InputAction @BeginDrag => m_Wrapper.m_UI_BeginDrag;
+            public InputAction @Drag => m_Wrapper.m_UI_Drag;
+            public InputAction @EndDrag => m_Wrapper.m_UI_EndDrag;
+            public InputAction @Drop => m_Wrapper.m_UI_Drop;
+            public InputActionMap Get() { return m_Wrapper.m_UI; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+            public void AddCallbacks(IUIActions instance)
+            {
+                if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+                @PointerClick.started += instance.OnPointerClick;
+                @PointerClick.performed += instance.OnPointerClick;
+                @PointerClick.canceled += instance.OnPointerClick;
+                @PointerDown.started += instance.OnPointerDown;
+                @PointerDown.performed += instance.OnPointerDown;
+                @PointerDown.canceled += instance.OnPointerDown;
+                @PointerUp.started += instance.OnPointerUp;
+                @PointerUp.performed += instance.OnPointerUp;
+                @PointerUp.canceled += instance.OnPointerUp;
+                @PointerPosition.started += instance.OnPointerPosition;
+                @PointerPosition.performed += instance.OnPointerPosition;
+                @PointerPosition.canceled += instance.OnPointerPosition;
+                @PointerDelta.started += instance.OnPointerDelta;
+                @PointerDelta.performed += instance.OnPointerDelta;
+                @PointerDelta.canceled += instance.OnPointerDelta;
+                @PointerScroll.started += instance.OnPointerScroll;
+                @PointerScroll.performed += instance.OnPointerScroll;
+                @PointerScroll.canceled += instance.OnPointerScroll;
+                @PointerEnter.started += instance.OnPointerEnter;
+                @PointerEnter.performed += instance.OnPointerEnter;
+                @PointerEnter.canceled += instance.OnPointerEnter;
+                @PointerExit.started += instance.OnPointerExit;
+                @PointerExit.performed += instance.OnPointerExit;
+                @PointerExit.canceled += instance.OnPointerExit;
+                @BeginDrag.started += instance.OnBeginDrag;
+                @BeginDrag.performed += instance.OnBeginDrag;
+                @BeginDrag.canceled += instance.OnBeginDrag;
+                @Drag.started += instance.OnDrag;
+                @Drag.performed += instance.OnDrag;
+                @Drag.canceled += instance.OnDrag;
+                @EndDrag.started += instance.OnEndDrag;
+                @EndDrag.performed += instance.OnEndDrag;
+                @EndDrag.canceled += instance.OnEndDrag;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
+            }
+
+            private void UnregisterCallbacks(IUIActions instance)
+            {
+                @PointerClick.started -= instance.OnPointerClick;
+                @PointerClick.performed -= instance.OnPointerClick;
+                @PointerClick.canceled -= instance.OnPointerClick;
+                @PointerDown.started -= instance.OnPointerDown;
+                @PointerDown.performed -= instance.OnPointerDown;
+                @PointerDown.canceled -= instance.OnPointerDown;
+                @PointerUp.started -= instance.OnPointerUp;
+                @PointerUp.performed -= instance.OnPointerUp;
+                @PointerUp.canceled -= instance.OnPointerUp;
+                @PointerPosition.started -= instance.OnPointerPosition;
+                @PointerPosition.performed -= instance.OnPointerPosition;
+                @PointerPosition.canceled -= instance.OnPointerPosition;
+                @PointerDelta.started -= instance.OnPointerDelta;
+                @PointerDelta.performed -= instance.OnPointerDelta;
+                @PointerDelta.canceled -= instance.OnPointerDelta;
+                @PointerScroll.started -= instance.OnPointerScroll;
+                @PointerScroll.performed -= instance.OnPointerScroll;
+                @PointerScroll.canceled -= instance.OnPointerScroll;
+                @PointerEnter.started -= instance.OnPointerEnter;
+                @PointerEnter.performed -= instance.OnPointerEnter;
+                @PointerEnter.canceled -= instance.OnPointerEnter;
+                @PointerExit.started -= instance.OnPointerExit;
+                @PointerExit.performed -= instance.OnPointerExit;
+                @PointerExit.canceled -= instance.OnPointerExit;
+                @BeginDrag.started -= instance.OnBeginDrag;
+                @BeginDrag.performed -= instance.OnBeginDrag;
+                @BeginDrag.canceled -= instance.OnBeginDrag;
+                @Drag.started -= instance.OnDrag;
+                @Drag.performed -= instance.OnDrag;
+                @Drag.canceled -= instance.OnDrag;
+                @EndDrag.started -= instance.OnEndDrag;
+                @EndDrag.performed -= instance.OnEndDrag;
+                @EndDrag.canceled -= instance.OnEndDrag;
+                @Drop.started -= instance.OnDrop;
+                @Drop.performed -= instance.OnDrop;
+                @Drop.canceled -= instance.OnDrop;
+            }
+
+            public void RemoveCallbacks(IUIActions instance)
+            {
+                if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IUIActions instance)
+            {
+                foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public UIActions @UI => new UIActions(this);
+        public interface IUIActions
+        {
+            void OnPointerClick(InputAction.CallbackContext context);
+            void OnPointerDown(InputAction.CallbackContext context);
+            void OnPointerUp(InputAction.CallbackContext context);
+            void OnPointerPosition(InputAction.CallbackContext context);
+            void OnPointerDelta(InputAction.CallbackContext context);
+            void OnPointerScroll(InputAction.CallbackContext context);
+            void OnPointerEnter(InputAction.CallbackContext context);
+            void OnPointerExit(InputAction.CallbackContext context);
+            void OnBeginDrag(InputAction.CallbackContext context);
+            void OnDrag(InputAction.CallbackContext context);
+            void OnEndDrag(InputAction.CallbackContext context);
+            void OnDrop(InputAction.CallbackContext context);
+        }
+    }
+}

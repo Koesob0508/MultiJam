@@ -4,25 +4,11 @@ using UnityEngine.EventSystems;
 
 namespace MultiJam
 {
-    public interface IMouseInput
+    public struct PointerInput
     {
-        // Clicks
-        Action<PointerEventData> OnPointerClick { get; set; }
-        Action<PointerEventData> OnPointerDown { get; set; }
-        Action<PointerEventData> OnPointerUp { get; set; }
-
-        // Drag
-        Action<PointerEventData> OnBeginDrag { get; set; }
-        Action<PointerEventData> OnDrag { get; set; }
-        Action<PointerEventData> OnEndDrag { get; set; }
-        Action<PointerEventData> OnDrop { get; set; }
-
-        // Enter
-        Action<PointerEventData> OnPointerEnter { get; set; }
-        Action<PointerEventData> OnPOinterExt { get; set; }
-
-        Vector2 MousePosition { get; }
-        DragDirection DragDirection { get; }
+        public Vector2 position;
+        public Vector2 delta;
+        public Vector2 scroll;
     }
 
     public enum DragDirection
@@ -32,5 +18,36 @@ namespace MultiJam
         Left,
         Top,
         Right
+    }
+
+    public interface IMouseInput :
+        IPointerClickHandler,
+        IBeginDragHandler,
+        IDragHandler,
+        IEndDragHandler,
+        IDropHandler,
+        IPointerDownHandler,
+        IPointerUpHandler,
+        IPointerEnterHandler,
+        IPointerExitHandler
+    {
+        Vector2 MousePosition { get; }
+        DragDirection DragDirection { get; }
+
+        // Clicks
+        new Action<PointerEventData> OnPointerClick { get; set; }
+        new Action<PointerEventData> OnPointerDown { get; set; }
+        new Action<PointerEventData> OnPointerUp { get; set; }
+
+        // Drag
+        new Action<PointerEventData> OnBeginDrag { get; set; }
+        new Action<PointerEventData> OnDrag { get; set; }
+        new Action<PointerEventData> OnEndDrag { get; set; }
+
+        new Action<PointerEventData> OnDrop { get; set; }
+
+        // Enter
+        new Action<PointerEventData> OnPointerEnter { get; set; }
+        new Action<PointerEventData> OnPointerExit { get; set; }
     }
 }
