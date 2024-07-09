@@ -1,6 +1,6 @@
 ﻿namespace MultiJam
 {
-    public abstract class ManagerBase
+    public abstract class BaseManager
     {
         public abstract void Init();
 

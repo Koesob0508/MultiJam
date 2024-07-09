@@ -338,7 +338,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -492,11 +492,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1188252632}
+  - component: {fileID: 1188252635}
+  - component: {fileID: 1188252633}
   - component: {fileID: 1188252631}
   - component: {fileID: 1188252630}
-  - component: {fileID: 1188252633}
+  - component: {fileID: 1188252634}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CardViewTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 1188252629}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.39, y: 0, z: 0}
+  m_LocalPosition: {x: -7.04, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -604,6 +606,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd2a59b00cbb3e48842062a75de7771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1188252634
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188252629}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1188252635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188252629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b165477c31f9c84439ac4ebd18d625f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardConfigsParameters: {fileID: 11400000, guid: 559a8c2915953a74e9e67d491842cc68, type: 2}
 --- !u!1 &1483962323
 GameObject:
   m_ObjectHideFlags: 0

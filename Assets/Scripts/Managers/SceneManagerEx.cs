@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace MultiJam
 {
-    public class SceneManagerEx : ManagerBase
+    public class SceneManagerEx : BaseManager
     {
         public BaseScene CurrentScene
         {

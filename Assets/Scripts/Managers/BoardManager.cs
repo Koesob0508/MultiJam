@@ -7,7 +7,7 @@ namespace MultiJam
     /// Board(내 오브젝트) 생성
     /// 이후 Player와 Enemy의 아이콘 저장
     /// </summary>
-    public class BoardManager : ManagerBase
+    public class BoardManager : BaseManager
     {
         private GameObject _player;
         private GameObject _enemy;

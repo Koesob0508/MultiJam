@@ -13,15 +13,15 @@ namespace MultiJam
         DragDirection IMouseInput.DragDirection => GetDragDirection();
 
         // TODO : Consider to impletment Save Invokes
-        Action<PointerEventData> IMouseInput.OnPointerClick { get; set; } = eventData => { Debug.Log("PointerClick"); };
-        Action<PointerEventData> IMouseInput.OnPointerDown { get; set; } = eventData => { Debug.Log("PointerDown"); };
-        Action<PointerEventData> IMouseInput.OnPointerUp { get; set; } = eventData => { Debug.Log("PointerUp"); };
-        Action<PointerEventData> IMouseInput.OnBeginDrag { get; set; } = eventData => { Debug.Log("BeginDrag"); };
-        Action<PointerEventData> IMouseInput.OnDrag { get; set; } = eventData => { Debug.Log("Drag"); };
-        Action<PointerEventData> IMouseInput.OnEndDrag { get; set; } = eventData => { Debug.Log("EndDrag"); };
-        Action<PointerEventData> IMouseInput.OnDrop { get; set; } = eventData => { Debug.Log("Drop"); };
-        Action<PointerEventData> IMouseInput.OnPointerEnter { get; set; } = eventData => { Debug.Log("PointerEnter"); };
-        Action<PointerEventData> IMouseInput.OnPointerExit { get; set; } = eventData => { Debug.Log("PointerExit"); };
+        Action<PointerEventData> IMouseInput.OnPointerClick { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnPointerDown { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnPointerUp { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnBeginDrag { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnDrag { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnEndDrag { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnDrop { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnPointerEnter { get; set; } = eventData => { };
+        Action<PointerEventData> IMouseInput.OnPointerExit { get; set; } = eventData => { };
 
         private void Awake()
         {

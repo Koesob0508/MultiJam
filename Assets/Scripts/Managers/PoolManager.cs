@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MultiJam
 {
-    public class PoolManager : ManagerBase
+    public class PoolManager : BaseManager
     {
         #region Pool
         private class Pool
