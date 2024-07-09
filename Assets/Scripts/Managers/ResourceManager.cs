@@ -2,7 +2,7 @@
 
 namespace MultiJam
 {
-    public class ResourceManager : ManagerBase
+    public class ResourceManager : BaseManager
     {
         public T Load<T>(string path) where T : Object
         {

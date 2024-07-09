@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MultiJam
 {
-    public class UIManager : ManagerBase
+    public class UIManager : BaseManager
     {
         int _order = 10;
 

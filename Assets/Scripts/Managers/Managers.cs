@@ -23,6 +23,10 @@ namespace MultiJam
         public static GameManager Game { get { return Instance._game; } }
         public static BoardManager Board { get { return Instance._board; } }
 
+        Logger _logger = new Logger();
+
+        public static Logger Logger { get { return Instance._logger; } }
+
         private void Start()
         {
             Init();
