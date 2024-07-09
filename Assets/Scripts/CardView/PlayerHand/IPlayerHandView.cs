@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MultiJam
 {
-    public interface IPlayerHandView : ICardViewPile
+    public interface IPlayerHandView : ICardPileView
     {
         List<ICardView> Cards { get; }
         Action<ICardView> OnCardPlayed { get; set; }

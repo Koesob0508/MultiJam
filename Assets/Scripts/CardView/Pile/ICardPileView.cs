@@ -2,7 +2,7 @@
 
 namespace MultiJam
 {
-    public interface ICardViewPile
+    public interface ICardPileView
     {
         Action<ICardView[]> OnPileChanged { get; set; }
         void AddCard(ICardView viewCard);
