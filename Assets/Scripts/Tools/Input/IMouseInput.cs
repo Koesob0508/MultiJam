@@ -4,13 +4,6 @@ using UnityEngine.EventSystems;
 
 namespace MultiJam
 {
-    public struct PointerInput
-    {
-        public Vector2 position;
-        public Vector2 delta;
-        public Vector2 scroll;
-    }
-
     public enum DragDirection
     {
         None,

@@ -1,6 +1,6 @@
 ﻿namespace MultiJam
 {
-    public abstract class CardViewStateBase : IState
+    public abstract class BaseCardViewState : IState
     {
         const int LayerToRenderNormal = 0;
         const int LayerToRenderTop = 1;
@@ -15,7 +15,7 @@
 
         #region Constructor
 
-        protected CardViewStateBase(ICardView handler, BaseStateMachine fsm, CardViewParameters parameters)
+        protected BaseCardViewState(ICardView handler, BaseStateMachine fsm, CardViewParameters parameters)
         {
             Handler = handler;
             FSM = fsm;
@@ -123,6 +123,8 @@
         public virtual void OnClear() { }
 
         public virtual void OnNextState(IState next) { }
+
+        // TODO : BaseState의 Operatin 필요한만큼 구현
 
         #endregion
     }

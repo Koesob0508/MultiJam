@@ -13,13 +13,13 @@ namespace MultiJam
         [SerializeField] public CardViewParameters cardConfigsParameters;
         IPlayerHandView Hand { get; set; }
         public IMouseInput Input { get; set; }
-        public bool IsDragging => throw new System.NotImplementedException();
+        public bool IsDragging => false;
 
-        public bool IsHovering => throw new System.NotImplementedException();
+        public bool IsHovering => false;
 
-        public bool IsDisabled => throw new System.NotImplementedException();
+        public bool IsDisabled => false;
 
-        public bool IsPlayer => throw new System.NotImplementedException();
+        public bool IsPlayer => true;
 
         #endregion
 
@@ -60,7 +60,10 @@ namespace MultiJam
             Renderers = GetComponentsInChildren<SpriteRenderer>();
             Renderer = GetComponent<SpriteRenderer>();
 
+            Scale = new ScaleCardViewMotion(this);
             Movement = new MovementCardViewMotion(this);
+            Rotation = new RotationCardViewMotion(this);
+
 
             FSM = new CardViewHandFsm(MainCamera, cardConfigsParameters, this);
         }
@@ -73,59 +76,32 @@ namespace MultiJam
 
         #endregion
 
-        public void Disable()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Enable() => FSM.Enable();
 
-        public void Discard()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Disable() => FSM.Disable();
 
-        public void Draw()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Draw() => FSM.Draw();
 
-        public void Enable()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Discard() => FSM.Discard();
 
-        public void Hover()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void MoveTo(Vector3 position, float speed, float delay = 0)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void MoveToWithZ(Vector3 position, float speed, float delay = 0)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void RotateTo(Vector4 euler, float speed, float delay = 0)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void ScaleTo(Vector3 scale, float speed, float delay = 0)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Hover() => Hover();
 
         public void Select()
         {
-            throw new System.NotImplementedException();
+            if (!IsPlayer) return;
+
+            Hand.SelectCard(this);
+            FSM.Select();
         }
 
-        public void UnSelect()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void UnSelect() => FSM.Unselect();
+
+        public void MoveTo(Vector3 position, float speed, float delay = 0) => Movement.Execute(position, speed, delay);
+
+        public void MoveToWithZ(Vector3 position, float speed, float delay = 0) => Movement.Execute(position, speed, delay, true);
+
+        public void RotateTo(Vector3 rotation, float speed, float delay = 0) => Rotation.Execute(rotation, speed);
+
+        public void ScaleTo(Vector3 scale, float speed, float delay = 0) => Scale.Execute(scale, speed, delay);
     }
 }

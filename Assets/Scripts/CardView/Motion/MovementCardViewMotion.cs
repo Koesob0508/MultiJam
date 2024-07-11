@@ -18,17 +18,17 @@ namespace MultiJam
 
         protected override void KeepMotion()
         {
-            var current = View.transform.position;
+            var current = Handler.transform.position;
             var amount = Speed * Time.deltaTime;
             var delta = Vector3.Lerp(current, Target, amount);
             if (!WithZ)
-                delta.z = View.transform.position.z;
-            View.transform.position = delta;
+                delta.z = Handler.transform.position.z;
+            Handler.transform.position = delta;
         }
 
         protected override bool CheckFinalState()
         {
-            var distance = Target - View.transform.position;
+            var distance = Target - Handler.transform.position;
 
             if (!WithZ)
                 distance.z = 0;
@@ -41,8 +41,8 @@ namespace MultiJam
             WithZ = false;
             IsOperating = false;
             var target = Target;
-            target.z = View.transform.position.z;
-            View.transform.position = target;
+            target.z = Handler.transform.position.z;
+            Handler.transform.position = target;
             base.OnMotionEnds();
         }
     }

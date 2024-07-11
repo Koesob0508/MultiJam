@@ -27,6 +27,41 @@ namespace MultiJam
         #endregion
 
         #region Operations
+
+        public void Enable()
+        {
+
+        }
+
+        public void Disable()
+        {
+
+        }
+
+        public void Draw()
+        {
+
+        }
+
+        public void Discard()
+        {
+
+        }
+
+        public void Select()
+        {
+
+        }
+
+        public void Unselect()
+        {
+
+        }
+
+        public void Hover()
+        {
+
+        }
         #endregion
     }
 }

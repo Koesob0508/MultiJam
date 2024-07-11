@@ -44,7 +44,7 @@ namespace MultiJam
         /// <param name="euler"></param>
         /// <param name="speed"></param>
         /// <param name="delay"></param>
-        void RotateTo(Vector4 euler, float speed, float delay = 0);
+        void RotateTo(Vector3 euler, float speed, float delay = 0);
 
         /// <summary>
         ///     Scale in the 3d space.

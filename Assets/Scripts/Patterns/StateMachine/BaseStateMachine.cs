@@ -140,7 +140,7 @@ namespace MultiJam
             var state = stack.Pop();
 
             Managers.Logger.Log<BaseStateMachine>($"{Handler.Name}, {stack.Count}, Pop state : ", "purple", state.GetType());
-            state.OnEnterState();
+            state.OnExitState();
 
             if (!isSilent)
                 Current?.OnEnterState();

@@ -12,8 +12,8 @@ namespace MultiJam
         /// <summary>
         /// Motion Card
         /// </summary>
-        protected ICardView View { get; }
-        protected BaseCardViewMotion(ICardView view) => View = view;
+        protected ICardView Handler { get; }
+        protected BaseCardViewMotion(ICardView handler) => Handler = handler;
 
         /// <summary>
         /// Dispathces when the motion ends.
@@ -67,7 +67,7 @@ namespace MultiJam
             if (delay == 0)
                 IsOperating = true;
             else
-                View.MonoBehaviour.StartCoroutine(AllowMotion(delay));
+                Handler.MonoBehaviour.StartCoroutine(AllowMotion(delay));
         }
 
         /// <summary>
