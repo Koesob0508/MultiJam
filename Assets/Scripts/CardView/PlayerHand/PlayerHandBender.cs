@@ -9,8 +9,11 @@ namespace MultiJam
         #region Fields & Properties
 
         [SerializeField]
+        CardViewParameters parameters;
+
+        [SerializeField]
         [Tooltip("Controls the curve that the hand uses.")]
-        private Vector3 curveStart = new Vector3(2f, -0.7f, 0), curveEnd = new Vector3(-2f, -0.7f, 0);
+        private Vector3 curveStart = new Vector3(-2f, -0.7f, 0), curveEnd = new Vector3(2f, -0.7f, 0);
 
         [SerializeField]
         [Tooltip("Controls the area which is considered 'in-hand' allowing cards to be selected/reordered. " +
@@ -24,7 +27,7 @@ namespace MultiJam
 
         [SerializeField]
         [Tooltip("Overlay camera that is rendering the cards. Used for raycasting mouse position.")]
-        Camera camOverlay= null;
+        Camera camOverlay = null;
 
         private Material lineMaterial;
 
@@ -58,11 +61,11 @@ namespace MultiJam
 
         #region UnityCallbacks
 
-        private void Awake()
-        {
-            PlayerHand = GetComponent<IPlayerHandView>();
-            PlayerHand.OnPileChanged += Bend;
-        }
+        //private void Awake()
+        //{
+        //    PlayerHand = GetComponent<IPlayerHandView>();
+        //    PlayerHand.OnPileChanged += Bend;
+        //}
 
         private void Start()
         {
@@ -105,7 +108,8 @@ namespace MultiJam
             GL.PushMatrix();
             GL.MultMatrix(transform.localToWorldMatrix);
             GL.Begin(GL.LINES);
-            GL.Color(mouseInsideHand ? Color.red : Color.blue);
+            //GL.Color(mouseInsideHand ? Color.red : Color.blue);
+            GL.Color(Color.blue);
 
             DrawWireCube(handOffset, handSize);
 
@@ -113,43 +117,42 @@ namespace MultiJam
             GL.PopMatrix();
         }
 
-        private void Update()
-        {
-            Ray ray = camOverlay.ScreenPointToRay(MousePos);
-            if (plane.Raycast(ray, out float enter))
-                mouseWorldPos = ray.GetPoint(enter);
+        //private void Update()
+        //{
+        //    Ray ray = camOverlay.ScreenPointToRay(MousePos);
+        //    if (plane.Raycast(ray, out float enter))
+        //        mouseWorldPos = ray.GetPoint(enter);
 
-            Vector3 point = transform.InverseTransformPoint(mouseWorldPos);
-            mouseInsideHand = handBounds.Contains(point);
-        }
+        //    Vector3 point = transform.InverseTransformPoint(mouseWorldPos);
+        //    mouseInsideHand = handBounds.Contains(point);
+        //}
 
         #endregion
 
         #region Operations
 
-        void Bend(ICardView[] cards)
+        public void Bend(ICardView[] cards)
         {
             if (cards == null)
                 throw new ArgumentException("Can't bend a card list null");
 
-            for(int i = 0; i < cards.Length; i++)
+            for (int i = 0; i < cards.Length; i++)
             {
                 ICardView card = cards[i];
-                Transform cardTransform = card.transform;
+
+                if (!card.FSM.IsCurrent<CardViewIdle>()) continue;
 
                 float t = (float)(i + 0.5f) / cards.Length;
-                Vector3 p = GetCurvePoint(curveStart, transform.position, curveEnd, t);
+                Vector3 cardPos = GetCurvePoint(curveStart + transform.position, transform.position, curveEnd + transform.position, 1 - t);
 
-                Vector3 cardUp = GetCurveNormal(curveStart, transform.position, curveEnd, t);
-                Vector3 cardPos = p;
+                Vector3 cardUp = GetCurveNormal(curveStart + transform.position, transform.position, curveEnd + transform.position, 1 - t);
 
-                cardPos.z = transform.position.z + i * 0.1f;
+                cardPos.z = -i * 0.1f;
 
-                Vector3 cardForward = Vector3.forward;
+                Vector3 cardRot = Quaternion.LookRotation(Vector3.forward, cardUp).eulerAngles;
 
-                cardTransform.rotation = Quaternion.RotateTowards(cardTransform.rotation, Quaternion.LookRotation(cardForward, cardUp), 80f);
-
-                cardTransform.position = cardPos;
+                card.MoveToWithZ(cardPos, parameters.MovementSpeed);
+                card.RotateTo(cardRot, parameters.RotationSpeed);
             }
         }
 
@@ -220,12 +223,13 @@ namespace MultiJam
                 center + new Vector3(-halfSize.x, halfSize.y, 0),
             };
 
-            for(int i = 0; i < vertices.Length; i++)
+            for (int i = 0; i < vertices.Length; i++)
             {
                 GL.Vertex(vertices[i]);
                 GL.Vertex(vertices[(i + 1) % vertices.Length]);
             }
         }
+
         #endregion
     }
 }

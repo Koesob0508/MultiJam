@@ -34,7 +34,7 @@ namespace MultiJam
 
         IEnumerator Start()
         {
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 1; i++)
             {
                 yield return new WaitForSeconds(0.2f);
                 DrawCard();

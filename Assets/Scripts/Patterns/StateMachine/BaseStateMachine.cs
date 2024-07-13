@@ -119,13 +119,14 @@ namespace MultiJam
             if (!register.ContainsKey(type))
                 throw new ArgumentException($"State {state} not registered yet.");
 
-            Managers.Logger.Log<BaseStateMachine>($"{Handler.Name}, {stack.Count}, Push state : ", "green", type);
 
             if (stack.Count > 0 && !isSilent)
                 Current?.OnExitState();
 
             stack.Push(state);
             state.OnEnterState();
+
+            Managers.Logger.Log<BaseStateMachine>($"{Handler.Name}, {stack.Count}, Push state : ", "green", type);
         }
 
         /// <summary>

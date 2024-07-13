@@ -9,14 +9,14 @@ namespace MultiJam
     [RequireComponent(typeof(PlayerHandView))]
     public class PlayerHandSorter : MonoBehaviour
     {
-        const int OffsetZ = -1;
+        const float OffsetZ = -0.1f;
 
         ICardPileView PlayerHand { get; set; }
 
         private void Awake()
         {
             PlayerHand = GetComponent<IPlayerHandView>();
-            PlayerHand.OnPileChanged += Sort;
+            // PlayerHand.OnPileChanged += Sort;
         }
 
         public void Sort(ICardView[] cards)
@@ -24,7 +24,7 @@ namespace MultiJam
             if (cards == null)
                 throw new ArgumentException("Can't sort a card list null");
 
-            var layerZ = 0;
+            var layerZ = 0f;
 
             foreach(var card in cards)
             {

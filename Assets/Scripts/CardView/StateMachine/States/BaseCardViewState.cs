@@ -28,27 +28,6 @@
         #region Operations
 
         /// <summary>
-        ///     Renders the textures in the first layer.
-        ///     Each card state is responsible to handle its own layer activity.
-        /// </summary>
-        protected virtual void MakeRenderFirst()
-        {
-            for (var i = 0; i < Handler.Renderers.Length; i++)
-                Handler.Renderers[i].sortingOrder = LayerToRenderTop;
-        }
-
-        /// <summary>
-        ///     Renders the textures in the regular layer.
-        ///     Each card state is responsible to handle its own layer activity.
-        /// </summary>
-        protected virtual void MakeRenderNormal()
-        {
-            for (var i = 0; i < Handler.Renderers.Length; i++)
-                if (Handler.Renderers[i])
-                    Handler.Renderers[i].sortingOrder = LayerToRenderNormal;
-        }
-
-        /// <summary>
         ///     Enables the card entirely. Collision, Rigidbody and adds Alpha.
         /// </summary>
         protected virtual void Enable()
@@ -58,7 +37,6 @@
             if (Handler.Rigidbody)
                 Handler.Rigidbody.Sleep();
 
-            MakeRenderNormal();
             RemoveAllTransparency();
         }
 
@@ -69,7 +47,7 @@
         {
             DisableCollision();
             Handler.Rigidbody.Sleep();
-            MakeRenderNormal();
+
             foreach(var renderer in Handler.Renderers)
             {
                 var myColor = renderer.color;

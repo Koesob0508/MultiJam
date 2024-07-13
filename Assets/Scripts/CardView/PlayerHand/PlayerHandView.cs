@@ -6,6 +6,7 @@ namespace MultiJam
     {
         #region Fields
 
+        private PlayerHandBender bender;
         event Action<ICardView> onCardPlayed = card => { };
         event Action<ICardView> onCardSelected = card => { };
 
@@ -37,7 +38,28 @@ namespace MultiJam
 
         #endregion
 
+        #region Unity Callbacks
+
+        private void Start()
+        {
+            bender = GetComponent<PlayerHandBender>();
+        }
+
+        private void Update()
+        {
+            bender.Bend(Cards.ToArray());
+        }
+
+        #endregion
+
         #region Operations
+
+        public override void AddCard(ICardView card)
+        {
+            base.AddCard(card);
+
+            card.Draw();
+        }
 
         public void SelectCard(ICardView card)
         {

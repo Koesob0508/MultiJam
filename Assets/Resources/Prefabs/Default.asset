@@ -12,3 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cff90fd537352b4c8bb52bf8c57a0ef, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
+  disabledAlpha: 0.5
+  hoverHeight: 1
+  hoverRotation: 0
+  hoverScale: 1.5
+  hoverSpeed: 15
+  height: 0.12
+  spacing: 0
+  bentAngle: 20
+  rotationSpeed: 20
+  rotationSpeedP2: 500
+  movementSpeed: 7
+  scaleSpeed: 8
+  startSizeWhenDraw: 0.05
+  discardedSize: 0.5

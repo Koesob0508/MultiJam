@@ -43,7 +43,7 @@ namespace MultiJam
         ///     Add a card to the pile.
         /// </summary>
         /// <param name="card"></param>
-        public void AddCard(ICardView card)
+        public virtual void AddCard(ICardView card)
         {
             if (card == null)
                 throw new ArgumentNullException("Null is not a valid argument");
@@ -59,7 +59,7 @@ namespace MultiJam
         ///     Remove a card from the pile.
         /// </summary>
         /// <param name="card"></param>
-        public void RemoveCard(ICardView card)
+        public virtual void RemoveCard(ICardView card)
         {
             if (card == null)
                 throw new ArgumentNullException("Null is not a valid argument");

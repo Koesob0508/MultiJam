@@ -7,6 +7,11 @@ namespace MultiJam
         #region Properties & Fields
 
         CardViewIdle IdleState { get; }
+        CardViewHover HoverState { get; }
+        CardViewDraw DrawState { get; }
+        CardViewSelect SelectState { get; }
+
+
         CardViewParameters CardConfigsParameters { get; }
 
         #endregion
@@ -18,8 +23,14 @@ namespace MultiJam
             CardConfigsParameters = cardConfigsParameters;
 
             IdleState = new CardViewIdle(handler, this, cardConfigsParameters);
+            HoverState = new CardViewHover(handler, this, cardConfigsParameters);
+            DrawState = new CardViewDraw(handler, this, cardConfigsParameters);
+            SelectState = new CardViewSelect(handler, this, cardConfigsParameters);
 
             RegisterState(IdleState);
+            RegisterState(HoverState);
+            RegisterState(DrawState);
+            RegisterState(SelectState);
 
             Initialize();
         }
@@ -28,20 +39,14 @@ namespace MultiJam
 
         #region Operations
 
-        public void Enable()
-        {
-
-        }
+        public void Enable() => PushState<CardViewIdle>();
 
         public void Disable()
         {
 
         }
 
-        public void Draw()
-        {
-
-        }
+        public void Draw() => PushState<CardViewDraw>();
 
         public void Discard()
         {
@@ -58,10 +63,8 @@ namespace MultiJam
 
         }
 
-        public void Hover()
-        {
+        public void Hover() => PushState<CardViewHover>();
 
-        }
         #endregion
     }
 }

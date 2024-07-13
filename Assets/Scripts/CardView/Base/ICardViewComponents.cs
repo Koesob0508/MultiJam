@@ -6,7 +6,7 @@ namespace MultiJam
     {
         Camera MainCamera { get; }
         SpriteRenderer[] Renderers { get; }
-        SpriteRenderer Renderer { get; }
+        MeshRenderer Renderer { get; }
         Collider Collider { get; }
         Rigidbody Rigidbody { get; }
         IMouseInput Input { get; }

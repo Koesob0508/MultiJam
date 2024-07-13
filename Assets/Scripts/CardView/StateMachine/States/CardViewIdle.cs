@@ -13,10 +13,14 @@ namespace MultiJam
             DefaultSize = Handler.transform.localScale;
         }
 
+        #region State Operations
+
         public override void OnEnterState()
         {
             Handler.Input.OnPointerEnter -= OnPointerEnter;
             Handler.Input.OnPointerEnter += OnPointerEnter;
+            Handler.Input.OnPointerClick -= OnPointerClick;
+            Handler.Input.OnPointerClick += OnPointerClick;
             Handler.Input.OnPointerDown -= OnPointerDown;
             Handler.Input.OnPointerDown += OnPointerDown;
 
@@ -32,28 +36,40 @@ namespace MultiJam
                 Enable();
             }
 
-            MakeRenderNormal();
             Handler.ScaleTo(DefaultSize, Parameters.ScaleSpeed);
         }
 
         public override void OnExitState()
         {
             Handler.Input.OnPointerEnter -= OnPointerEnter;
+            Handler.Input.OnPointerClick -= OnPointerClick;
             Handler.Input.OnPointerDown -= OnPointerDown;
 
             Handler.Movement.OnFinishMotion -= Enable;
         }
 
+        #endregion
+
+        #region Pointer Operations
+
         void OnPointerEnter(PointerEventData obj)
         {
             if (FSM.IsCurrent(this))
-                Handler.Hover();
+                FSM.PushState<CardViewHover>();
+        }
+
+        void OnPointerClick(PointerEventData eventData)
+        {
+            if (FSM.IsCurrent(this))
+                FSM.PushState<CardViewSelect>();
         }
 
         void OnPointerDown(PointerEventData obj)
         {
             if (FSM.IsCurrent(this))
-                Handler.Select();
+                Managers.Logger.Log<CardViewIdle>($"Drag");
         }
+
+        #endregion
     }
 }

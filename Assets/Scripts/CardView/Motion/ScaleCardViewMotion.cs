@@ -20,6 +20,8 @@ namespace MultiJam
         {
             Handler.transform.localScale = Target;
             IsOperating = false;
+
+            base.OnMotionEnds();
         }
 
         protected override void KeepMotion()

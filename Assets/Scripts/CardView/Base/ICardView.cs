@@ -5,6 +5,7 @@
     /// </summary>
     public interface ICardView : ICardViewComponents, ICardViewMotion, IStateMachineHandler
     {
+        public CardViewHandFsm FSM { get; set; }
         bool IsDragging { get; }
         bool IsHovering { get; }
         bool IsDisabled { get; }
