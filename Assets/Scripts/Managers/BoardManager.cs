@@ -7,7 +7,7 @@ namespace MultiJam
     /// Board(내 오브젝트) 생성
     /// 이후 Player와 Enemy의 아이콘 저장
     /// </summary>
-    public class BoardManager : BaseManager
+    public class BoardManager : IManager
     {
         private GameObject _player;
         private GameObject _enemy;
@@ -17,7 +17,7 @@ namespace MultiJam
         public GameObject Player { get => _player; }
         public GameObject Enemy { get => _enemy; }
 
-        public override void Init()
+        public void Init()
         {
             if(_root == null)
             {
@@ -25,7 +25,7 @@ namespace MultiJam
             }
         }
 
-        public override void Clear()
+        public void Clear()
         {
             foreach(Transform child in _root)
             {

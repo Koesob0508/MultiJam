@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace MultiJam
 {
-    public class SceneManagerEx : BaseManager
+    public class SceneManagerEx : IManager
     {
         public BaseScene CurrentScene
         {
@@ -23,12 +23,12 @@ namespace MultiJam
             return name;
         }
 
-        public override void Init()
+        public void Init()
         {
             
         }
 
-        public override void Clear()
+        public void Clear()
         {
             CurrentScene.Clear();
         }

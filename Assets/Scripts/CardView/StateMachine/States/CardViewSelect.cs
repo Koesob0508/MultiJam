@@ -5,10 +5,6 @@ namespace MultiJam
 {
     public class CardViewSelect : BaseCardViewState
     {
-        private Vector3 StartPosition { get; set; }
-        private Vector3 StartEuler { get; set; }
-        private Vector3 StartScale { get; set; }
-
         private Vector3 mousePos;
         private Vector3 offset;
         private Plane plane;
@@ -23,9 +19,6 @@ namespace MultiJam
         {
             if(FSM.IsCurrent(this) && eventData.button == PointerEventData.InputButton.Right)
             {
-                Debug.Log("Cancel");
-                // 원상 복귀
-                ResetValues();
                 DisableCollision();
                 FSM.PopState();
             }
@@ -45,8 +38,6 @@ namespace MultiJam
         {
             Handler.Input.OnPointerDown -= OnPointerDown;
             Handler.Input.OnPointerDown += OnPointerDown;
-
-            CachePreviousValues();
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Handler.Input.MousePosition);
             offset = Handler.transform.position - new Vector3(mousePos.x, mousePos.y, Handler.transform.position.z);
@@ -73,20 +64,6 @@ namespace MultiJam
                 mousePos = ray.GetPoint(enter);
 
             Handler.transform.position = mousePos;
-        }
-
-        private void CachePreviousValues()
-        {
-            StartScale = Handler.transform.localScale;
-            StartPosition = Handler.transform.position;
-            StartEuler = Handler.transform.eulerAngles;
-        }
-
-        private void ResetValues()
-        {
-            Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
-            Handler.MoveToWithZ(StartPosition, Parameters.HoverSpeed);
-            Handler.RotateTo(StartEuler, Parameters.RotationSpeed);
         }
 
         #endregion

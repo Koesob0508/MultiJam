@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MultiJam
 {
-    public class UIManager : BaseManager
+    public class UIManager : IManager
     {
         int _order = 10;
 
@@ -103,12 +103,12 @@ namespace MultiJam
             while (_popupStack.Count > 0) { ClosePopupUI(); }
         }
 
-        public override void Init()
+        public void Init()
         {
 
         }
 
-        public override void Clear()
+        public void Clear()
         {
             CloseAllPopupUI();
             _sceneUI = null;

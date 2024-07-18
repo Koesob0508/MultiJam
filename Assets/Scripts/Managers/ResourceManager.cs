@@ -2,7 +2,7 @@
 
 namespace MultiJam
 {
-    public class ResourceManager : BaseManager
+    public class ResourceManager : IManager
     {
         public T Load<T>(string path) where T : Object
         {
@@ -82,12 +82,12 @@ namespace MultiJam
             Object.Destroy(go);
         }
 
-        public override void Init()
+        public void Init()
         {
             
         }
 
-        public override void Clear()
+        public void Clear()
         {
             
         }

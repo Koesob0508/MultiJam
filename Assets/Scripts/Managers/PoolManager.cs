@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MultiJam
 {
-    public class PoolManager : BaseManager
+    public class PoolManager : IManager
     {
         #region Pool
         private class Pool
@@ -77,7 +77,7 @@ namespace MultiJam
         Dictionary<string, Pool> _pool = new Dictionary<string, Pool>();
         Transform _root;
 
-        public override void Init()
+        public void Init()
         {
             if (_root == null)
             {
@@ -125,7 +125,7 @@ namespace MultiJam
             return _pool[name].Original;
         }
 
-        public override void Clear()
+        public void Clear()
         {
             foreach (Transform child in _root)
             {
